@@ -1,0 +1,9 @@
+/* Home */
+
+.home > div > a {
+
+}
+
+.home > div > a > i {
+	font-size: 2em;
+}
