@@ -9,12 +9,17 @@ import Home from "../Home";
 export default class App extends Component {
 	render() {
 		return (
-			<div>
+			<div className="app">
 				<header>
-
+					<h1>joshuas.software</h1>
+					<nav>
+						<a>blog</a>
+						<a>portfolio</a>
+						<a>resume</a>
+					</nav>
 				</header>
-				<main class="App-main">
-					<Home />
+				<main>
+
 				</main>
 			</div>
 		);
