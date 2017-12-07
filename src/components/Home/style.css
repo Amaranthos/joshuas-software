@@ -1,9 +1,15 @@
 /* Home */
 
-.home > div > a {
-
+.home-links {
+	margin: .5rem;
 }
 
-.home > div > a > i {
+.home-links > a {
+	text-decoration: none;
+	color: black;
+	margin: .25rem;
+}
+
+.home-links > a > i {
 	font-size: 2em;
 }
