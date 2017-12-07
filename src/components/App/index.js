@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
 
-import Appbar from 'muicss/lib/react/appbar';
-import Container from 'muicss/lib/react/container';
-
 import Home from "../Home";
 
 export default class App extends Component {
@@ -13,13 +10,13 @@ export default class App extends Component {
 				<header>
 					<h1>joshuas.software</h1>
 					<nav>
-						<a>blog</a>
-						<a>portfolio</a>
-						<a>resume</a>
+						<a href="#">blog</a>
+						<a href="#">portfolio</a>
+						<a href="#">resume</a>
 					</nav>
 				</header>
 				<main>
-
+					<Home />
 				</main>
 			</div>
 		);
