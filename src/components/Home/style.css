@@ -6,10 +6,14 @@
 
 .home-links > a {
 	text-decoration: none;
-	color: black;
+	color: inherit;
 	margin: .25rem;
 }
 
 .home-links > a > i {
 	font-size: 2em;
+}
+
+.home > h3 {
+	margin-top: 0;
 }

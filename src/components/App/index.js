@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import './style.css';
 
 import Home from "../Home";
@@ -20,10 +20,12 @@ export default class App extends Component {
 					</nav>
 				</header>
 				<main>
-					<Route exact path="/" component={Home} />
-					<Route path="/blog" component={Blog} />
-					<Route path="/portfolio" component={Portfolio} />
-					<Route path="/resume" component={Resume} />
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route path="/blog" component={Blog} />
+						<Route path="/portfolio" component={Portfolio} />
+						<Route path="/resume" component={Resume} />
+					</Switch>
 				</main>
 			</div>
 		);
