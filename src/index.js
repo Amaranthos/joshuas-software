@@ -9,4 +9,4 @@ import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
 	<Root store={store} />, document.getElementById('root')
 );
-registerServiceWorker();
+// registerServiceWorker();
