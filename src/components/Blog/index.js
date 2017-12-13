@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import './style.css';
 
+import './style.css';
 import { fetchPosts } from '../../actions';
 import List from '../List';
 
@@ -14,6 +14,11 @@ class Blog extends Component {
 	render() {
 		return (
 			<div className="blog">
+				{this.props.auth.authed?
+					(
+						<textarea />
+					) : ''
+				}
 				<List>
 					{
 						_.map(this.props.posts, post => {
@@ -32,7 +37,7 @@ class Blog extends Component {
 }
 
 function mapStateToProps(state) {
-	return { posts: state.posts };
+	return { posts: state.posts, auth: state.auth };
 }
 
 function mapDispatchToProps(dispatch) {
