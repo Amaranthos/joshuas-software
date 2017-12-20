@@ -12,8 +12,9 @@ class Auth extends Component {
 	}
 
 	renderField(field) {
+		const { meta: {dirty}} = field;
 		return(
-			<span>
+			<span className={dirty? 'dirty' : ''}>
 				<label>{field.label}</label>
 				<input {...field.input} type={field.type} />
 			</span>
@@ -27,12 +28,14 @@ class Auth extends Component {
 			);
 		}
 
-		const { handleSubmit, fields: { email, password }} = this.props;
+		const { handleSubmit } = this.props;
 		return (
 			<form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
-				<Field name="email" component={this.renderField} label="email" type="email" />
-				<Field name="password" component={this.renderField} label="password" type="password" />
-				<button action="submit" />
+				<fieldset>
+					<Field name="email" component={this.renderField} label="email" type="email" />
+					<Field name="password" component={this.renderField} label="password" type="password" />
+					<button action="submit">auth</button>
+				</fieldset>
 			</form>
 		);
 	}
