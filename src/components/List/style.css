@@ -2,14 +2,6 @@
 	border-bottom: 1px solid black;
 }
 
-.listitem > p {
-	margin: 1rem 0;
-}
-
-.listitem > h3 {
-	margin: 2rem 0 0.5rem;
-}
-
 .listitem:nth-child(1) > h3 {
 	margin-top: 0;
 }

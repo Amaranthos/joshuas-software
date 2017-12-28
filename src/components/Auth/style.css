@@ -1,6 +1,6 @@
 /* Auth */
 
-form > fieldset > span {
+.auth > fieldset > span {
 	display: block;
 	position: relative;
 	box-sizing: border-box;
@@ -8,7 +8,7 @@ form > fieldset > span {
 	padding: 20px 0;
 }
 
-form > fieldset > span > input {
+.auth > fieldset > span > input {
 	border: none;
 	border-bottom: 1px solid;
 	display: block;
@@ -19,7 +19,7 @@ form > fieldset > span > input {
 	text-align: left;
 }
 
-form > fieldset > span > label {
+.auth > fieldset > span > label {
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -31,7 +31,7 @@ form > fieldset > span > label {
 	text-align: left;
 }
 
-form > fieldset > button {
+.auth > fieldset > button {
 	background: 0 0;
 	border: 1px solid;
 	border-radius: 2px;
@@ -52,6 +52,6 @@ form > fieldset > button {
 	cursor: pointer;
 }
 
-form > fieldset > span.dirty > label {
+.auth > fieldset > span.dirty > label {
 	visibility: hidden;
 }
