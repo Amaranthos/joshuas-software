@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Markdown from 'react-remarkable';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-gist.css';
 import _ from 'lodash';
 
 import './style.css';
 import { fetchPosts } from '../../actions';
 import List from '../List';
+import AddPost from './Posts/Add';
+
+const highlight = (str, lang) => {
+	if(lang && hljs.getLanguage(lang)) {
+		try { return hljs.highlight(lang, str).value; }
+		catch(err) { console.error(err); }
+	}
+
+	try { return hljs.highlightAuto(str).value; }
+	catch(err) { console.error(err); }
+
+	return '';
+}
 
 class Blog extends Component {
 	componentDidMount() {
@@ -14,18 +30,22 @@ class Blog extends Component {
 	render() {
 		return (
 			<div className="blog">
-				{this.props.auth.authed?
-					(
-						<textarea />
-					) : ''
-				}
+				{this.props.auth.authed? (
+						<AddPost />
+				) : '' }
 				<List>
 					{
-						_.map(this.props.posts, post => {
+						_.map(_.reverse(_.slice(this.props.posts)), (post) => {
+							var ts = new Date(post.ts).toLocaleDateString();
+							if(ts === 'Invalid Date') ts = '';
 							return (
-								<div className="listitem">
-									<h3>{post.title}</h3>
-									<p>{post.body}</p>
+								<div key={post.id} className="listitem">
+									<span>
+										{ts}
+									</span>
+									<Markdown options={{highlight}} >
+										{post.content}
+									</Markdown>
 								</div>
 							);
 						})

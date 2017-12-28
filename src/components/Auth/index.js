@@ -30,7 +30,7 @@ class Auth extends Component {
 
 		const { handleSubmit } = this.props;
 		return (
-			<form onSubmit={handleSubmit(this.onSubmit.bind(this))} >
+			<form className="auth" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 				<fieldset>
 					<Field name="email" component={this.renderField} label="email" type="email" />
 					<Field name="password" component={this.renderField} label="password" type="password" />

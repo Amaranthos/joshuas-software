@@ -1,5 +1,6 @@
 import Types from './types';
 import { database, auth } from '../fire.js';
+import firebase from 'firebase';
 
 
 export function fetchPosts() {
@@ -36,7 +37,7 @@ function fetchPostsFufilled(posts) {
 
 export function signin(email, password) {
 	return dispatch => {
-		dispatch(signinRequested());
+		dispatch(signinRequested);
 		return auth.signInWithEmailAndPassword(email, password)
 		.then(result => {
 			dispatch(signinFulfilled(result));
@@ -45,7 +46,7 @@ export function signin(email, password) {
 			console.error(err);
 			dispatch(signinRejected);
 		});
-	}
+	};
 }
 
 function signinRequested() {
@@ -64,5 +65,39 @@ function signinFulfilled(result) {
 	return {
 		  type: Types.SIGNIN_FULFILLED
 		, result
+	};
+}
+
+export function addPost(content) {
+	var ts = firebase.database.ServerValue.TIMESTAMP
+	return dispatch => {
+		dispatch(addPostRequested);
+		return database.ref('/blog/posts').push({ content, ts })
+		.then(ref => {
+			dispatch(addPostFulfilled({ [ref.key]: { content, ts }}));
+		})
+		.catch(err => {
+			console.error(err);
+			dispatch(addPostRejected);
+		});
+	};
+}
+
+function addPostRequested() {
+	return {
+		type: Types.ADD_POST_REQUESTED
+	};
+}
+
+function addPostRejected() {
+	return {
+		type: Types.ADD_POST_REJECTED
+	};
+}
+
+function addPostFulfilled(post) {
+	return {
+		  type: Types.ADD_POST_FULFILLED
+		, post
 	};
 }
