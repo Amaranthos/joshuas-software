@@ -4,15 +4,15 @@ import { database, auth } from '../fire.js';
 
 export function fetchPosts() {
 	return dispatch => {
-		dispatch(fetchPostsRequested());
-		return database.ref('/blog').once('value', snap => {
+		dispatch(fetchPostsRequested);
+		return database.ref('/blog/posts').once('value', snap => {
 			dispatch(fetchPostsFufilled(snap.val()));
 		})
 		.catch(err => {
 			console.error(err);
 			dispatch(fetchPostsRejected);
 		})
-	}
+	};
 }
 
 function fetchPostsRequested() {
@@ -27,10 +27,10 @@ function fetchPostsRejected() {
 	};
 }
 
-function fetchPostsFufilled(blog) {
+function fetchPostsFufilled(posts) {
 	return {
 		  type: Types.FETCH_POSTS_FULFILLED
-		, blog
+		, posts
 	};
 }
 
