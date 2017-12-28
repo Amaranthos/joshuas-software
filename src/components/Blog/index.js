@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import _ from 'lodash';
+import hljs from 'highlight.js';
 import { connect } from 'react-redux';
 import Markdown from 'react-remarkable';
-import hljs from 'highlight.js';
+import React, { Component } from 'react';
 import 'highlight.js/styles/github-gist.css';
-import _ from 'lodash';
 
 import './style.css';
 import { fetchPosts } from '../../actions';

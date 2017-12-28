@@ -6,13 +6,12 @@ import firebase from 'firebase';
 export function fetchPosts() {
 	return dispatch => {
 		dispatch(fetchPostsRequested);
-		return database.ref('/blog/posts').once('value', snap => {
+		return database.ref('/blog/posts').on('value', snap => {
 			dispatch(fetchPostsFufilled(snap.val()));
-		})
-		.catch(err => {
+		}, err => {
 			console.error(err);
 			dispatch(fetchPostsRejected);
-		})
+		});
 	};
 }
 
