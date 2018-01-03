@@ -1,7 +1,7 @@
 import Types from './types';
-import { database, auth } from '../fire.js';
+import { database, auth, storage } from '../fire.js';
 import firebase from 'firebase';
-
+import uuidv4 from 'uuid/v4';
 
 export function fetchPosts() {
 	return dispatch => {
@@ -99,4 +99,46 @@ function addPostFulfilled(post) {
 		  type: Types.ADD_POST_FULFILLED
 		, post
 	};
+}
+
+export function uploadFile(file, placeholder) {
+	return dispatch => {
+		dispatch(uploadFileRequested);
+		return storage.ref(`/blog/${uuidv4()}`).put(file)
+		.then(snap => {
+			dispatch(uploadFileFulfilled(snap.downloadURL, placeholder, file.name));
+		})
+		.catch(err => {
+			console.error(err);
+			dispatch(uploadFileRejected);
+		})
+	}
+}
+
+function uploadFileRequested() {
+	return {
+		type: Types.UPLOAD_FILE_REQUESTED
+	};
+}
+
+function uploadFileRejected() {
+	return {
+		type: Types.UPLOAD_FILE_REJECTED
+	}
+}
+
+function uploadFileFulfilled(url, placeholder, name) {
+	return {
+		  type: Types.UPLOAD_FILE_FULFILLED
+		, url
+		, placeholder
+		, name
+	}
+}
+
+export function uploadFileDisplayed(upload) {
+	return {
+		  type: Types.UPLOAD_FILE_DISPLAYED
+		, upload
+	}
 }
