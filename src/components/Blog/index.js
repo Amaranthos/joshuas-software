@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Markdown from 'react-remarkable';
 import React, { Component } from 'react';
 import 'highlight.js/styles/github-gist.css';
+import { Route, Switch } from 'react-router-dom';
 
 import './style.css';
 import { fetchPosts } from '../../actions';
@@ -27,31 +28,42 @@ class Blog extends Component {
 		this.props.fetchPosts();
 	}
 
-	render() {
+	renderPost() {
+
+	}
+
+	renderList() {
 		return (
-			<div className="blog">
-				<AddPost />
+			<List>
 				{this.props.auth.authed? (
 						<AddPost />
 				) : '' }
-				<List>
-					{
-						_.map(_.reverse(_.slice(this.props.posts)), (post) => {
-							var ts = new Date(post.ts).toLocaleDateString();
-							if(ts === 'Invalid Date') ts = '';
-							return (
-								<div key={post.id} className="listitem">
-									<span>
-										{ts}
-									</span>
-									<Markdown options={{highlight}} >
-										{post.content}
-									</Markdown>
-								</div>
-							);
-						})
-					}
-				</List>
+				{
+					_.map(_.reverse(_.slice(this.props.posts)), (post) => {
+						var ts = new Date(post.ts).toLocaleDateString();
+						if(ts === 'Invalid Date') ts = '';
+						return (
+							<div key={post.id} className="listitem">
+								<span>
+									{ts}
+								</span>
+								<Markdown options={{highlight}} >
+									{post.content}
+								</Markdown>
+							</div>
+						);
+					})
+				}
+			</List>
+		);
+	}
+
+	render() {
+		return (
+			<div className="blog">
+				<Switch>
+					<Route extact path="/" component={this.renderList} />
+				</Switch>
 			</div>
 		);
 	}
