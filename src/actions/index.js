@@ -34,38 +34,7 @@ function fetchPostsFufilled(posts) {
 	};
 }
 
-export function signin(email, password) {
-	return dispatch => {
-		dispatch(signinRequested);
-		return auth.signInWithEmailAndPassword(email, password)
-		.then(result => {
-			dispatch(signinFulfilled(result));
-		})
-		.catch(err => {
-			console.error(err);
-			dispatch(signinRejected);
-		});
-	};
-}
-
-function signinRequested() {
-	return {
-		type: Types.SIGNIN_REQUESTED
-	};
-}
-
-function signinRejected() {
-	return {
-		type: Types.SIGNIN_REJECTED
-	};
-}
-
-function signinFulfilled(result) {
-	return {
-		  type: Types.SIGNIN_FULFILLED
-		, result
-	};
-}
+export const signin = (email, password) => ({ type: Types.SIGNIN_REQUESTED, email, password });
 
 export function addPost(content) {
 	var ts = firebase.database.ServerValue.TIMESTAMP

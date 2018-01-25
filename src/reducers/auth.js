@@ -1,6 +1,8 @@
 import Types from '../actions/types';
 
-export default function(state = {}, action) {
+const defaultState = { authed: false };
+
+export default function(state = defaultState, action) {
 	switch(action.type) {
 		case Types.SIGNIN_FULFILLED:
 			return {...state, authed: true};
