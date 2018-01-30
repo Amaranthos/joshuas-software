@@ -7,6 +7,10 @@ export default function(state = [], action) {
 		case Types.FETCH_POSTS_FULFILLED:
 			return _.toArray(_.mapKeys(action.posts, (v, k) => v.id = k ));
 
+		case Types.FETCH_POSTS_REJECTED:
+			console.error(action.err);
+			return state;
+
 		default: return state;
 	}
 }

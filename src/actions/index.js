@@ -1,38 +1,22 @@
 import Types from './types';
-import { database, auth, storage } from '../fire.js';
+import { database, storage } from '../fire.js';
 import firebase from 'firebase';
 import uuidv4 from 'uuid/v4';
 
-export function fetchPosts() {
-	return dispatch => {
-		dispatch(fetchPostsRequested);
-		return database.ref('/blog/posts').on('value', snap => {
-			dispatch(fetchPostsFufilled(snap.val()));
-		}, err => {
-			console.error(err);
-			dispatch(fetchPostsRejected);
-		});
-	};
-}
+// export function fetchPosts() {
+// 	return dispatch => {
+// 		dispatch(fetchPostsRequested);
+// 		return database.ref('/blog/posts').on('value', snap => {
+// 			console.log(snap);
+// 			dispatch(fetchPostsFufilled(snap.val()));
+// 		}, err => {
+// 			console.error(err);
+// 			dispatch(fetchPostsRejected);
+// 		});
+// 	};
+// }
 
-function fetchPostsRequested() {
-	return {
-		type: Types.FETCH_POSTS_REQUESTED
-	};
-}
-
-function fetchPostsRejected() {
-	return {
-		type: Types.FETCH_POSTS_REJECTED
-	};
-}
-
-function fetchPostsFufilled(posts) {
-	return {
-		  type: Types.FETCH_POSTS_FULFILLED
-		, posts
-	};
-}
+export const fetchPosts = () => ({ type: Types.FETCH_POSTS_REQUESTED });
 
 export const signin = (email, password) => ({ type: Types.SIGNIN_REQUESTED, email, password });
 

@@ -2,7 +2,7 @@ import Types from '../actions/types';
 import { Observable } from "rxjs";
 import { auth } from '../fire.js';
 
-const signinFulfilled = posts => ({ type: Types.SIGNIN_FULFILLED, posts });
+const signinFulfilled = () => ({ type: Types.SIGNIN_FULFILLED });
 const signinRejected = err => ({ type: Types.SIGNIN_REJECTED, err });
 
 export const authEpic = action$ =>
