@@ -1,16 +1,25 @@
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
 import { createEpicMiddleware } from 'redux-observable';
+import createHistory from 'history/createBrowserHistory';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { reducers } from './reducers';
 import { epics } from './epics';
 
+export const history = createHistory();
+
 const epicMiddleware = createEpicMiddleware(epics);
 
-const store = createStore(
-	  reducers
-	, {}
-	, compose(applyMiddleware(thunk, epicMiddleware))
-);
+const persistConfig = {
+	  key: 'root'
+	, storage
+};
 
-export default store;
+export const store = createStore(
+	  persistReducer(persistConfig, reducers)
+	, {}
+	, compose(applyMiddleware(thunk, epicMiddleware, routerMiddleware(history)))
+);

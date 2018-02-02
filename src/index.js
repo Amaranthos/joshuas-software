@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './index.css';
-import store from './store';
+import { store, history } from './store';
 import Root from './components/Root';
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-	<Root store={store} />, document.getElementById('root')
+	<Root store={store} history={history} />, document.getElementById('root')
 );
 // registerServiceWorker();
