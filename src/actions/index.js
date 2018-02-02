@@ -1,58 +1,15 @@
 import Types from './types';
-import { database, storage } from '../fire.js';
-import firebase from 'firebase';
+import { storage } from '../fire.js';
 import uuidv4 from 'uuid/v4';
 
-// export function fetchPosts() {
-// 	return dispatch => {
-// 		dispatch(fetchPostsRequested);
-// 		return database.ref('/blog/posts').on('value', snap => {
-// 			console.log(snap);
-// 			dispatch(fetchPostsFufilled(snap.val()));
-// 		}, err => {
-// 			console.error(err);
-// 			dispatch(fetchPostsRejected);
-// 		});
-// 	};
-// }
 
 export const fetchPosts = () => ({ type: Types.FETCH_POSTS_REQUESTED });
 
 export const signin = (email, password) => ({ type: Types.SIGNIN_REQUESTED, email, password });
 
-export function addPost(content) {
-	var ts = firebase.database.ServerValue.TIMESTAMP
-	return dispatch => {
-		dispatch(addPostRequested);
-		return database.ref('/blog/posts').push({ content, ts })
-		.then(ref => {
-			dispatch(addPostFulfilled({ [ref.key]: { content, ts }}));
-		})
-		.catch(err => {
-			console.error(err);
-			dispatch(addPostRejected);
-		});
-	};
-}
+export const signout = () => ({ type: Types.SIGNOUT_REQUESTED });
 
-function addPostRequested() {
-	return {
-		type: Types.ADD_POST_REQUESTED
-	};
-}
-
-function addPostRejected() {
-	return {
-		type: Types.ADD_POST_REJECTED
-	};
-}
-
-function addPostFulfilled(post) {
-	return {
-		  type: Types.ADD_POST_FULFILLED
-		, post
-	};
-}
+export const addPost = (content) => ({ type: Types.ADD_POST_REQUESTED, content });
 
 export function uploadFile(file, placeholder) {
 	return dispatch => {

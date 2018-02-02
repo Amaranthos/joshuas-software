@@ -30,7 +30,6 @@ class Blog extends Component {
 	render() {
 		return (
 			<div className="blog">
-				<AddPost />
 				{this.props.auth.authed? (
 						<AddPost />
 				) : '' }
