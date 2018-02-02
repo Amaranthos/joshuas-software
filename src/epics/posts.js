@@ -6,8 +6,7 @@ import { combineEpics } from 'redux-observable';
 
 const fetchPostsFufilled = posts => ({ type: Types.FETCH_POSTS_FULFILLED, posts });
 const fetchPostsRejected = err => ({ type: Types.FETCH_POSTS_REJECTED, err });
-
-export const fetchPostsEpic = action$ =>
+const fetchPostsEpic = action$ =>
 	action$.ofType(Types.FETCH_POSTS_REQUESTED)
 		.mergeMap(
 			action =>
