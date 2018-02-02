@@ -4,11 +4,15 @@ import { reduxForm, Field } from "redux-form";
 import { Redirect } from 'react-router';
 
 import './style.css';
-import { signin } from '../../actions';
+import { signin, signout } from '../../actions';
 
 class Auth extends Component {
 	onSubmit(values) {
 		this.props.signin(values.email, values.password);
+	}
+
+	onClick() {
+		this.props.signout();
 	}
 
 	renderField(field) {
@@ -22,13 +26,8 @@ class Auth extends Component {
 	}
 
 	render() {
-		if(this.props.auth.authed) {
-			return(
-				<Redirect to="/" />
-			);
-		}
-
 		const { handleSubmit } = this.props;
+		if(this.props.auth.authed) return <button onClick={this.onClick.bind(this)}>deauth</button>;
 		return (
 			<form className="auth" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 				<fieldset>
@@ -46,7 +45,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return { signin: (email, password) => dispatch(signin(email, password)) };
+	return {
+		  signin: (email, password) => dispatch(signin(email, password))
+		, signout: (email, password) => dispatch(signout(email, password))
+	};
 }
 
 export default reduxForm({

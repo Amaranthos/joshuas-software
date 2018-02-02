@@ -7,6 +7,9 @@ export default function(state = defaultState, action) {
 		case Types.SIGNIN_FULFILLED:
 			return {...state, authed: true};
 
+		case Types.SIGNOUT_FULFILLED:
+			return {...state, authed: false};
+
 		default: return state;
 	}
 }
