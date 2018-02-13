@@ -31,7 +31,6 @@ class PostAdd extends Component {
 
 	render() {
 		_.map(this.props.storage.uploads, upload => {
-			console.log('upload: ', upload);
 			this.props.change('content', this.props.content.replace(upload.placeholder, `![${upload.name}](${upload.url})`));
 			this.props.uploadFileDisplayed(upload);
 		});

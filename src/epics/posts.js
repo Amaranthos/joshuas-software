@@ -20,7 +20,6 @@ const fetchPostsEpic = action$ =>
 const addPostFulfilled = post => ({ type: Types.ADD_POST_FULFILLED, post });
 const addPostRejected = err => ({ type: Types.ADD_POST_REJECTED, err });
 const addPostEpic = action$ =>
-	// console.log(addPostEpic);
 	action$.ofType(Types.ADD_POST_REQUESTED)
 		.mergeMap(
 			action =>
