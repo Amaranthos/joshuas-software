@@ -10,10 +10,10 @@ const fetchPostsEpic = action$ =>
 	action$.ofType(Types.FETCH_POSTS_REQUESTED)
 		.mergeMap(
 			action =>
-				Observable.fromPromise(
-					database.ref('/blog/posts').once('value')
+				Observable.create(observer =>
+					database.ref('/blog/posts').on('value', snap => observer.next(snap.val()))
 				)
-				.map(snap => fetchPostsFufilled(snap.val()))
+				.map(snap => fetchPostsFufilled(snap))
 				.catch(err => fetchPostsRejected(err))
 		);
 
