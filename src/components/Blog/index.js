@@ -2,11 +2,14 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import 'highlight.js/styles/github-gist.css';
+import { Link, Route, Switch } from 'react-router-dom';
 
 import './style.css';
-import { fetchPosts } from '../../actions';
 import List from '../List';
 import AddPost from './Posts/Add';
+import ShowPost from './Posts/Show';
+import RenderPost from './Posts/Render';
+import { fetchPosts } from '../../actions';
 
 class Blog extends Component {
 	componentDidMount() {

@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import { Observable } from "rxjs";
 import Types from '../actions/types';
 import { storage } from '../fire.js';
