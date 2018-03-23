@@ -1,7 +1,5 @@
 import _ from 'lodash';
-import hljs from 'highlight.js';
 import { connect } from 'react-redux';
-import Markdown from 'react-remarkable';
 import React, { Component } from 'react';
 import 'highlight.js/styles/github-gist.css';
 
@@ -9,18 +7,6 @@ import './style.css';
 import { fetchPosts } from '../../actions';
 import List from '../List';
 import AddPost from './Posts/Add';
-
-const highlight = (str, lang) => {
-	if(lang && hljs.getLanguage(lang)) {
-		try { return hljs.highlight(lang, str).value; }
-		catch(err) { console.error(err); }
-	}
-
-	try { return hljs.highlightAuto(str).value; }
-	catch(err) { console.error(err); }
-
-	return '';
-}
 
 class Blog extends Component {
 	componentDidMount() {
