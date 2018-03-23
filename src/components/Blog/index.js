@@ -18,29 +18,32 @@ class Blog extends Component {
 
 	render() {
 		return (
-			<div className="blog">
-				{this.props.auth.authed? (
-						<AddPost />
-				) : '' }
-				<List>
-					{
-						_.map(_.reverse(_.slice(this.props.posts)), (post) => {
-							var ts = new Date(post.ts).toLocaleDateString();
-							if(ts === 'Invalid Date') ts = '';
-							return (
-								<div key={post.id} className="listitem">
-									<span>
-										{ts}
-									</span>
-									<Markdown options={{highlight}} >
-										{post.content}
-									</Markdown>
-								</div>
-							);
-						})
-					}
-				</List>
-			</div>
+			<Switch>
+				<Route exact path="/blog/:postid" component={ShowPost} />
+				<Route exact path="/blog">
+					<div className="blog">
+						{this.props.auth.authed? (
+								<AddPost />
+						) : '' }
+						<List>
+							{
+								_.map(_.reverse(_.slice(this.props.posts)), (post) => {
+									var ts = new Date(post.ts).toLocaleDateString();
+									if(ts === 'Invalid Date') ts = '';
+									return (
+										<div key={post.id} className="listitem">
+											<span>
+												{ts} <Link to={`blog/${post.id}`}><i className="fa fa-link"/></Link>
+											</span>
+											<RenderPost post={post} />
+										</div>
+									);
+								})
+							}
+						</List>
+					</div>
+				</Route>
+			</Switch>
 		);
 	}
 }

@@ -24,3 +24,7 @@ button {
 	vertical-align: middle;
 	cursor: pointer;
 }
+
+a > i.fa {
+	color: initial;
+}
