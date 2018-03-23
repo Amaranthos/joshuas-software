@@ -30,7 +30,21 @@ const addPostEpic = action$ =>
 				.catch(err => addPostRejected(err))
 		);
 
+const fetchPostFufilled = post => ({ type: Types.FETCH_POST_FULFILLED, post})
+const fetchPostEpic = action$ =>
+	action$.ofType(Types.FETCH_POST_REQUESTED)
+		.mergeMap(
+			action => {
+				console.log('id:', action.id);
+				return Observable.fromPromise(
+					database.ref('/blog/posts').once('value')
+				)
+				.map(ref => fetchPostFufilled(ref.val()))
+			}
+		);
+
 export const postsEpic = combineEpics(
 	  fetchPostsEpic
+	, fetchPostEpic
 	, addPostEpic
 );

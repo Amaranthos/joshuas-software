@@ -1,10 +1,13 @@
 import Types from './types';
-import { storage } from '../fire.js';
-import uuidv4 from 'uuid/v4';
 
 // Posts
 export const fetchPosts = () => ({ type: Types.FETCH_POSTS_REQUESTED });
 export const addPost = (content) => ({ type: Types.ADD_POST_REQUESTED, content });
+export const fetchPost = (id) => {
+	console.log(id);
+	return ({ type: Types.FETCH_POST_REQUESTED, id });
+
+}
 
 // Auth
 export const signin = (email, password) => ({ type: Types.SIGNIN_REQUESTED, email, password });
