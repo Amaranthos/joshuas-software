@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import './style.css';
+import Navbar from "../navbar";
 import Auth from "../Auth";
 import Blog from "../Blog";
 import Home from "../Home";
@@ -12,14 +13,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<header>
-					<Link to="/"><h1>joshuas.software</h1></Link>
-					<nav>
-						<Link to="/blog">blog</Link>
-						<Link to="/portfolio">portfolio</Link>
-						<Link to="/resume">resume</Link>
-					</nav>
-				</header>
+				<Navbar />
 				<main>
 					<Switch>
 						<Route exact path="/" component={Home} />
