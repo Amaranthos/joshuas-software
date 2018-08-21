@@ -4,7 +4,7 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { ConnectedRouter } from 'connected-react-router';
 
-import App from '../App';
+import App from './App';
 
 const Root = ({ store, history }) =>
 (

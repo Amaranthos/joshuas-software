@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import './index.css';
 import { store, history } from './store';
-import Root from './components/Root';
+import Root from './components/root';
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
