@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
-import { routerReducer as router } from 'react-router-redux';
 
 import posts from './posts';
 import auth from './auth';
@@ -11,5 +10,4 @@ export const reducers = combineReducers({
 	, posts
 	, auth
 	, storage
-	, router
 });

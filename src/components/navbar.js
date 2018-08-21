@@ -1,17 +1,25 @@
 import React from 'react';
-import { Header } from "glamorous";
+import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
+
+const Header = styled('header')({
+    gridArea: 'header',
+    borderBottom: '1px solid black',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+});
 
 const Navbar = () => {
     return (
-        <header>
+        <Header>
             <Link to="/"><h1>joshuas.software</h1></Link>
             <nav>
                 <Link to="/blog">blog</Link>
                 <Link to="/portfolio">portfolio</Link>
                 <Link to="/resume">resume</Link>
             </nav>
-        </header>
+        </Header>
     );
 }
 
