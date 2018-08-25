@@ -1,9 +1,0 @@
-.listitem {
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-between;
-}
-
-.listitem > span {
-	margin: 1rem 0;
-}

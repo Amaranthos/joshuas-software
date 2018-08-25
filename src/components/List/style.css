@@ -1,7 +1,0 @@
-.listitem {
-	border-bottom: 1px solid black;
-}
-
-.listitem:nth-child(1) > h3 {
-	margin-top: 0;
-}

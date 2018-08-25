@@ -1,15 +1,26 @@
 import _ from 'lodash';
+import styled from 'react-emotion';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import 'highlight.js/styles/github-gist.css';
 import { Link, Route, Switch } from 'react-router-dom';
 
-import './style.css';
-import List from '../List';
 import AddPost from './Posts/Add';
 import ShowPost from './Posts/Show';
 import RenderPost from './Posts/Render';
 import { fetchPosts } from '../../actions';
+import { FaIcon } from '../fa-icon';
+
+const ListItem = styled('div')({
+	borderBottom: '1px solid black',
+	display: 'flex',
+	flexDirection: 'row-reverse',
+	justifyContent: 'space-between'
+});
+
+const ListItemSpan = styled('span')({
+	margin: '1rem 0'
+});
 
 class Blog extends Component {
 	componentDidMount() {
@@ -25,22 +36,22 @@ class Blog extends Component {
 						{this.props.auth.authed? (
 								<AddPost />
 						) : '' }
-						<List>
+						<div>
 							{
 								_.map(_.reverse(_.slice(this.props.posts)), (post) => {
 									var ts = new Date(post.ts).toLocaleDateString();
 									if(ts === 'Invalid Date') ts = '';
 									return (
-										<div key={post.id} className="listitem">
-											<span>
-												{ts} <Link to={`blog/${post.id}`}><i className="fa fa-link"/></Link>
-											</span>
+										<ListItem key={post.id}>
+											<ListItemSpan>
+												{ts} <Link to={`blog/${post.id}`}><FaIcon icon='link'/></Link>
+											</ListItemSpan>
 											<RenderPost post={post} />
-										</div>
+										</ListItem>
 									);
 								})
 							}
-						</List>
+						</div>
 					</div>
 				</Route>
 			</Switch>
