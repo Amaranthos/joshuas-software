@@ -9,7 +9,7 @@ import Home from "./Home";
 import Resume from "./Resume";
 import Portfolio from "./Portfolio";
 
-const Div = styled('div')({
+const StyledDiv = styled('div')({
 	display: 'grid',
 	gridTemplateColumns: '1fr',
 	gridTemplateRows: '160px 10fr',
@@ -35,7 +35,7 @@ const Header = styled(Navbar)({
 });
 
 export const App = () => (
-	<Div>
+	<StyledDiv>
 		<Header />
 		<Main>
 			<Switch>
@@ -46,6 +46,5 @@ export const App = () => (
 				<Route path="/auth" component={Auth} />
 			</Switch>
 		</Main>
-	</Div>
-
+	</StyledDiv>
 );
