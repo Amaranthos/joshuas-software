@@ -1,8 +1,7 @@
-import thunk from 'redux-thunk';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { createEpicMiddleware } from 'redux-observable';
 import { createBrowserHistory } from 'history';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -11,7 +10,6 @@ import { epics } from './epics';
 
 export const history = createBrowserHistory();
 const epicMiddleware = createEpicMiddleware(epics);
-// const nav
 
 const persistConfig = {
 	  key: 'root'
