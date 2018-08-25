@@ -2,12 +2,12 @@ import styled from 'react-emotion';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Navbar } from "./navbar";
 import Auth from "./Auth";
 import Blog from "./Blog";
 import { Home } from "./home";
-import Resume from "./Resume";
-import Portfolio from "./Portfolio";
+import { Navbar } from "./navbar";
+import { Resume } from "./resume";
+import { Portfolio } from "./portfolio";
 
 const StyledDiv = styled('div')({
 	display: 'grid',
