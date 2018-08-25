@@ -4,7 +4,6 @@ import styled from 'react-emotion';
 import { UnstyledLink } from './unstyled-link';
 
 const Header = styled('header')({
-    gridArea: 'header',
     borderBottom: '1px solid black',
     display: 'flex',
     flexDirection: 'column',
@@ -40,15 +39,13 @@ const NavLink = styled(UnstyledLink)({
     }
 });
 
-export const Navbar = () => {
-    return (
-        <Header>
-            <NavTitleLink to="/"><h1>joshuas.software</h1></NavTitleLink>
-            <Nav>
-                <NavLink to="/blog">blog</NavLink>
-                <NavLink to="/portfolio">portfolio</NavLink>
-                <NavLink to="/resume">resume</NavLink>
-            </Nav>
-        </Header>
-    );
-}
+export const Navbar = ({ className }) => (
+    <Header className={className}>
+        <NavTitleLink to="/"><h1>joshuas.software</h1></NavTitleLink>
+        <Nav>
+            <NavLink to="/blog">blog</NavLink>
+            <NavLink to="/portfolio">portfolio</NavLink>
+            <NavLink to="/resume">resume</NavLink>
+        </Nav>
+    </Header>
+);
