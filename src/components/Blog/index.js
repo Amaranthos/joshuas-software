@@ -11,7 +11,7 @@ import RenderPost from './Posts/Render';
 import { fetchPosts } from '../../actions';
 import { FaIcon } from '../fa-icon';
 
-const ListItem = styled('div')({
+const StyledPost = styled('article')({
 	borderBottom: '1px solid black',
 	display: 'flex',
 	flexDirection: 'row-reverse',
@@ -21,6 +21,15 @@ const ListItem = styled('div')({
 const ListItemSpan = styled('span')({
 	margin: '1rem 0'
 });
+
+const InlinePost = ({post, ts}) => (
+	<StyledPost>
+		<ListItemSpan>
+			{ts} <Link to={`blog/${post.id}`}><FaIcon icon='link' /></Link>
+		</ListItemSpan>
+		<RenderPost post={post} />
+	</StyledPost>
+);
 
 class Blog extends Component {
 	componentDidMount() {
@@ -32,27 +41,20 @@ class Blog extends Component {
 			<Switch>
 				<Route exact path="/blog/:postid" component={ShowPost} />
 				<Route exact path="/blog">
-					<div className="blog">
+					<React.Fragment>
 						{this.props.auth.authed? (
 								<AddPost />
 						) : '' }
-						<div>
+						<React.Fragment>
 							{
-								_.map(_.reverse(_.slice(this.props.posts)), (post) => {
+								_.map(_.reverse((this.props.posts)), (post) => {
 									var ts = new Date(post.ts).toLocaleDateString();
 									if(ts === 'Invalid Date') ts = '';
-									return (
-										<ListItem key={post.id}>
-											<ListItemSpan>
-												{ts} <Link to={`blog/${post.id}`}><FaIcon icon='link'/></Link>
-											</ListItemSpan>
-											<RenderPost post={post} />
-										</ListItem>
-									);
+									return <InlinePost key={post.id} post={post} ts={ts} />;
 								})
 							}
-						</div>
-					</div>
+						</React.Fragment>
+					</React.Fragment>
 				</Route>
 			</Switch>
 		);
