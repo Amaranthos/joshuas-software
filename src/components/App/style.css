@@ -6,38 +6,6 @@
 	grid-template-rows: 160px 10fr;
 }
 
-.app > header {
-	grid-area: header;
-	border-bottom: 1px solid black;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.app > header > a {
-	text-decoration: none;
-	color: inherit;
-}
-
-.app > header > a > h1 {
-	margin-left: 1rem;
-}
-
-.app > header > nav {
-	margin-left: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: flex-start;
-}
-
-.app > header > nav > a {
-	padding: 2px 0;
-	margin: 2px 0;
-	text-decoration: none;
-	color: inherit;
-}
-
 .app > main {
 	grid-area: content;
 	margin: 1rem;
@@ -48,20 +16,5 @@
 		grid-template-areas: "header header header" ". . ." ". content .";
 		grid-template-columns: 1fr 3fr 1fr;
 		grid-template-rows: 80px 50px 10fr;
-	}
-
-	.app > header {
-		flex-direction: row;
-	}
-
-	.app > header > nav {
-		align-items: center;
-		margin-right: 1rem;
-		flex-direction: row;
-	}
-
-	.app > header > nav > a {
-		padding: 0 5px;
-		margin: 0 5px;
 	}
 }
