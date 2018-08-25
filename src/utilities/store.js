@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { reducers } from './reducers';
-import { epics } from './epics';
+import { reducers } from '../reducers';
+import { epics } from '../epics';
 
 export const history = createBrowserHistory();
 const epicMiddleware = createEpicMiddleware(epics);

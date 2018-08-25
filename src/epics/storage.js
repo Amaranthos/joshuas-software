@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import Types from '../actions/types';
-import { storage } from '../fire.js';
+import { storage } from '../utilities/fire.js';
 import { combineEpics } from 'redux-observable';
 import uuidv4 from 'uuid/v4';
 

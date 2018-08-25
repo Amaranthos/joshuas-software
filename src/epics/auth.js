@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { auth } from '../fire.js';
+import { auth } from '../utilities/fire.js';
 import Types from '../actions/types';
 import { combineEpics } from 'redux-observable';
 

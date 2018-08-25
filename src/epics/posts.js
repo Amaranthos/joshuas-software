@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import { Observable } from "rxjs";
 import Types from '../actions/types';
-import { database } from '../fire.js';
+import { database } from '../utilities/fire.js';
 import { combineEpics } from 'redux-observable';
 
 const fetchPostsFufilled = posts => ({ type: Types.FETCH_POSTS_FULFILLED, posts });
