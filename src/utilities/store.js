@@ -1,9 +1,10 @@
-import { connectRouter, routerMiddleware } from 'connected-react-router';
-import { createEpicMiddleware } from 'redux-observable';
 import { createBrowserHistory } from 'history';
-import { createStore, applyMiddleware } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { createStore, applyMiddleware } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { reducers } from '../reducers';
 import { epics } from '../epics';
@@ -19,5 +20,5 @@ const persistConfig = {
 export const store = createStore(
 	  connectRouter(history)(persistReducer(persistConfig, reducers))
 	, {}
-	, applyMiddleware(epicMiddleware, routerMiddleware(history))
+	, composeWithDevTools(applyMiddleware(epicMiddleware, routerMiddleware(history)))
 );
