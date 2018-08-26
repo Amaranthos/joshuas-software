@@ -3,31 +3,8 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 
+import { AuthField } from './auth-field';
 import { signin, signout } from '../actions';
-
-const FieldSpan = styled('span')({
-	display: 'block',
-	boxSizing: 'border-box',
-	margin: 0,
-	padding: '20px 0'
-});
-
-const FieldLabel = styled('label')({
-});
-
-const FieldInput = styled('input')({
-	border: 'none',
-	margin: 0,
-	padding: '4px 0',
-	width: '100%',
-});
-
-const AuthField = (field) => (
-	<FieldSpan className={field.meta.dirty? 'dirty' : ''}>
-		<FieldLabel>{field.label}</FieldLabel>
-		<FieldInput {...field.input} type={field.type} />
-	</FieldSpan>
-);
 
 class Auth extends Component {
 	onSubmit(values) {
