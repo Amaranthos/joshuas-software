@@ -22,6 +22,13 @@ const FieldInput = styled('input')({
 	width: '100%',
 });
 
+const AuthField = (field) => (
+	<FieldSpan className={field.meta.dirty? 'dirty' : ''}>
+		<FieldLabel>{field.label}</FieldLabel>
+		<FieldInput {...field.input} type={field.type} />
+	</FieldSpan>
+);
+
 class Auth extends Component {
 	onSubmit(values) {
 		this.props.signin(values.email, values.password);
@@ -31,24 +38,14 @@ class Auth extends Component {
 		this.props.signout();
 	}
 
-	renderField(field) {
-		const { meta: {dirty}} = field;
-		return(
-			<FieldSpan className={dirty? 'dirty' : ''}>
-				<FieldLabel>{field.label}</FieldLabel>
-				<FieldInput {...field.input} type={field.type} />
-			</FieldSpan>
-		);
-	}
-
 	render() {
-		const { handleSubmit } = this.props;
-		if(this.props.auth.authed) return <button onClick={this.onClick.bind(this)}>deauth</button>;
+		const { handleSubmit, auth } = this.props;
+		if(auth) return <button onClick={this.onClick.bind(this)}>deauth</button>;
 		return (
 			<form className="auth" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 				<fieldset>
-					<Field name="email" component={this.renderField} label="email" type="email" />
-					<Field name="password" component={this.renderField} label="password" type="password" />
+					<Field name="email" component={AuthField} label="email" type="email" />
+					<Field name="password" component={AuthField} label="password" type="password" />
 					<button action="submit">auth</button>
 				</fieldset>
 			</form>
