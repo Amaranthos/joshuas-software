@@ -2,7 +2,7 @@ import styled from 'react-emotion';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Auth from "./Auth";
+import Auth from "./auth";
 import Blog from "./Blog";
 import { Home } from "./home";
 import { Navbar } from "./navbar";

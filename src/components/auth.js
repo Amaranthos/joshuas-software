@@ -1,9 +1,26 @@
-import React, { Component } from "react";
+import styled from 'react-emotion';
 import { connect } from "react-redux";
+import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 
-import './style.css';
-import { signin, signout } from '../../actions';
+import { signin, signout } from '../actions';
+
+const FieldSpan = styled('span')({
+	display: 'block',
+	boxSizing: 'border-box',
+	margin: 0,
+	padding: '20px 0'
+});
+
+const FieldLabel = styled('label')({
+});
+
+const FieldInput = styled('input')({
+	border: 'none',
+	margin: 0,
+	padding: '4px 0',
+	width: '100%',
+});
 
 class Auth extends Component {
 	onSubmit(values) {
@@ -17,10 +34,10 @@ class Auth extends Component {
 	renderField(field) {
 		const { meta: {dirty}} = field;
 		return(
-			<span className={dirty? 'dirty' : ''}>
-				<label>{field.label}</label>
-				<input {...field.input} type={field.type} />
-			</span>
+			<FieldSpan className={dirty? 'dirty' : ''}>
+				<FieldLabel>{field.label}</FieldLabel>
+				<FieldInput {...field.input} type={field.type} />
+			</FieldSpan>
 		);
 	}
 
