@@ -8,7 +8,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import AddPost from './Posts/Add';
 import ShowPost from './Posts/Show';
 import RenderPost from './Posts/Render';
-import { fetchPosts } from '../../actions';
+import { fetchPosts, deletePost } from '../../actions';
 import { FaIcon } from '../fa-icon';
 
 const StyledPost = styled('article')({
@@ -37,22 +37,18 @@ class Blog extends Component {
 	}
 
 	render() {
+		let { auth, posts } = this.props;
+
 		return (
 			<Switch>
 				<Route exact path="/blog/:postid" component={ShowPost} />
 				<Route exact path="/blog">
 					<React.Fragment>
-						{this.props.auth.authed? (
+						{auth? (
 								<AddPost />
 						) : '' }
 						<React.Fragment>
-							{
-								_.map(_.reverse((this.props.posts)), (post) => {
-									var ts = new Date(post.ts).toLocaleDateString();
-									if(ts === 'Invalid Date') ts = '';
-									return <InlinePost key={post.id} post={post} ts={ts} />;
-								})
-							}
+							{_.map(posts, (post) => <InlinePost key={post.id} post={post} ts={post.ts} auth={auth} />)}
 						</React.Fragment>
 					</React.Fragment>
 				</Route>

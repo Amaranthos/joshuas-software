@@ -2,13 +2,13 @@ import Types from '../actions/types';
 
 const defaultState = { authed: false };
 
-export default function(state = defaultState, action) {
+export default function(state = false, action) {
 	switch(action.type) {
 		case Types.SIGNIN_FULFILLED:
-			return {...state, authed: true};
+			return true;
 
 		case Types.SIGNOUT_FULFILLED:
-			return {...state, authed: false};
+			return false;
 
 		default: return state;
 	}
