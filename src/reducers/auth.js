@@ -1,7 +1,5 @@
 import Types from '../actions/types';
 
-const defaultState = { authed: false };
-
 export default function(state = false, action) {
 	switch(action.type) {
 		case Types.SIGNIN_FULFILLED:

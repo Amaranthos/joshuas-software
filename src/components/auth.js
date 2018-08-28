@@ -1,4 +1,3 @@
-import styled from 'react-emotion';
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";

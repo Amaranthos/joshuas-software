@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'react-emotion';
 
-import { ExternalLink } from './external-link';
 import { FaIcon } from './fa-icon';
+import { ExternalLink } from './external-link';
 
 const LinksDiv = styled('div')({
 	margin: '.5rem'
