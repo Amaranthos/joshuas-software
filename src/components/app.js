@@ -2,18 +2,14 @@ import styled from 'react-emotion';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Auth from "./auth";
-import Blog from "./Blog";
-import { Home } from "./home";
-import { Navbar } from "./navbar";
-import { Resume } from "./resume";
-import { Portfolio } from "./portfolio";
+import { mediaBreakpoints } from '../utilities/styling';
 
 const StyledDiv = styled('div')({
 	display: 'grid',
 	gridTemplateColumns: '1fr',
 	gridTemplateRows: '160px 10fr',
-	'@media(min-width: 600px)': {
+	backgroundColor: p => p.theme.backgroundColour,
+	[mediaBreakpoints[0]]: {
 		gridTemplateColumns: '1fr 3fr 1fr',
 		gridTemplateRows: '80px 50px 10fr'
 	}
@@ -21,14 +17,14 @@ const StyledDiv = styled('div')({
 
 const Main = styled('main')({
 	margin: '1rem',
-	'@media(min-width: 600px)': {
+	[mediaBreakpoints[0]]: {
 		gridColumnStart: 2,
 		gridRowStart: 3
 	}
 });
 
 const Header = styled(Navbar)({
-	'@media(min-width: 600px)': {
+	[mediaBreakpoints[0]]: {
 		gridColumnStart: 1,
 		gridColumnEnd: 4,
 	}

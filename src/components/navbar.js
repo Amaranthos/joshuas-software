@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'react-emotion';
 
 import { UnstyledLink } from './unstyled-link';
+import { mediaBreakpoints } from '../utilities/styling';
 
 const Header = styled('header')({
     borderBottom: '1px solid black',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    '@media(min-width: 600px)': {
+    [mediaBreakpoints[0]]: {
         flexDirection: 'row'
     }
 });
@@ -19,7 +20,7 @@ const Nav = styled('nav')({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'flex-start',
-    '@media(min-width: 600px)': {
+    [mediaBreakpoints[0]]: {
         flexDirection: 'row',
         alignItems: 'center',
         marginRight: '1rem'
@@ -33,7 +34,7 @@ const NavTitleLink = styled(UnstyledLink)({
 const NavLink = styled(UnstyledLink)({
     padding: '2px 0',
     margin: '2px 0',
-    '@media(min-width: 600px)': {
+    [mediaBreakpoints[0]]: {
         padding: '0 5px',
         margin: '0 5px'
     }
