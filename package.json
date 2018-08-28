@@ -5,6 +5,7 @@
   "dependencies": {
     "connected-react-router": "^4.4.1",
     "emotion": "^9.2.6",
+    "emotion-theming": "^9.2.6",
     "firebase": "^4.7.0",
     "glamor": "^2.20.40",
     "glamorous": "^4.13.1",
