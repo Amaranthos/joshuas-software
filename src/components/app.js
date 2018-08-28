@@ -1,7 +1,13 @@
-import styled from 'react-emotion';
 import React from 'react';
+import styled from 'react-emotion';
 import { Route, Switch } from 'react-router-dom';
 
+import Auth from './auth';
+import Blog from './Blog';
+import { Home } from './home';
+import { Navbar } from './navbar';
+import { Resume } from './resume';
+import { Portfolio } from './portfolio';
 import { mediaBreakpoints } from '../utilities/styling';
 
 const StyledDiv = styled('div')({
@@ -35,11 +41,11 @@ export const App = () => (
 		<Header />
 		<Main>
 			<Switch>
-				<Route exact path="/" component={Home} />
-				<Route path="/blog" component={Blog} />
-				<Route path="/portfolio" component={Portfolio} />
-				<Route path="/resume" component={Resume} />
-				<Route path="/auth" component={Auth} />
+				<Route exact path='/' component={Home} />
+				<Route path='/blog' component={Blog} />
+				<Route path='/portfolio' component={Portfolio} />
+				<Route path='/resume' component={Resume} />
+				<Route path='/auth' component={Auth} />
 			</Switch>
 		</Main>
 	</StyledDiv>
