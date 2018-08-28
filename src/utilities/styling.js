@@ -1,10 +1,11 @@
-export const lightTheme = {
-    color: '#FFF',
-    backgroundColour: '#FFFFFF'
-};
+export const themes = {
+    'LIGHT': {
+        backgroundColor: '#FFFFFF'
 
-export const darkTheme = {
-    backgroundColour: '#FFFFFF'
+    },
+    'DARK': {
+        backgroundColor: '#000000'
+    }
 };
 
 const breakpoints = [600, ];

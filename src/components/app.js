@@ -10,16 +10,17 @@ import { Resume } from './resume';
 import { Portfolio } from './portfolio';
 import { mediaBreakpoints } from '../utilities/styling';
 
-const StyledDiv = styled('div')({
+const StyledDiv = styled('div')(props => ({
 	display: 'grid',
 	gridTemplateColumns: '1fr',
 	gridTemplateRows: '160px 10fr',
-	backgroundColor: p => p.theme.backgroundColour,
+	height: '100%',
+	backgroundColor: props.theme.backgroundColor,
 	[mediaBreakpoints[0]]: {
 		gridTemplateColumns: '1fr 3fr 1fr',
 		gridTemplateRows: '80px 50px 10fr'
 	}
-});
+}));
 
 const Main = styled('main')({
 	margin: '1rem',
