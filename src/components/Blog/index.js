@@ -62,7 +62,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return { fetchPosts: () => dispatch(fetchPosts()) };
+	return {
+		fetchPosts: () => dispatch(fetchPosts()),
+		deletePost: () => dispatch(deletePost())
+	};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Blog);
