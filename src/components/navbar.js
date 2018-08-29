@@ -4,15 +4,15 @@ import styled from 'react-emotion';
 import { UnstyledLink } from './unstyled-link';
 import { mediaBreakpoints } from '../utilities/styling';
 
-const Header = styled('header')({
-    borderBottom: '1px solid black',
+const Header = styled('header')(props => ({
+    borderBottom: `1px solid ${props.theme.primaryFontColor}`,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     [mediaBreakpoints[0]]: {
         flexDirection: 'row'
     }
-});
+}));
 
 const Nav = styled('nav')({
     marginLeft: '1rem',

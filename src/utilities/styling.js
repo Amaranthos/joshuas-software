@@ -1,10 +1,11 @@
 export const themes = {
     'LIGHT': {
-        backgroundColor: '#FFFFFF'
-
+        backgroundColor: '#FFFFFF',
+        primaryFontColor: '#000000'
     },
     'DARK': {
-        backgroundColor: '#000000'
+        backgroundColor: '#000000',
+        primaryFontColor: '#FFFFFF'
     }
 };
 

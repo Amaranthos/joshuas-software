@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 
 const Icon = styled('i')({
-    color: 'initial'
+    color: 'inherit'
 });
 
 export const FaIcon = ({ className, icon }) => (

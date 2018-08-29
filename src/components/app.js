@@ -16,6 +16,7 @@ const StyledDiv = styled('div')(props => ({
 	gridTemplateRows: '160px 10fr',
 	height: '100%',
 	backgroundColor: props.theme.backgroundColor,
+	color: props.theme.primaryFontColor,
 	[mediaBreakpoints[0]]: {
 		gridTemplateColumns: '1fr 3fr 1fr',
 		gridTemplateRows: '80px 50px 10fr'
