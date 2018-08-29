@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 
+import { Button } from './button';
 import { AuthField } from './auth-field';
 import { signin, signout } from '../actions';
 
@@ -16,13 +17,13 @@ class Auth extends Component {
 
 	render() {
 		const { handleSubmit, auth } = this.props;
-		if(auth) return <button onClick={this.onClick.bind(this)}>deauth</button>;
+		if (auth) return <Button onClick={this.onClick.bind(this)}>deauth</Button>;
 		return (
 			<form className="auth" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 				<fieldset>
 					<Field name="email" component={AuthField} label="email" type="email" />
 					<Field name="password" component={AuthField} label="password" type="password" />
-					<button action="submit">auth</button>
+					<Button action="submit">auth</Button>
 				</fieldset>
 			</form>
 		);
