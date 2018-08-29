@@ -14,3 +14,6 @@ export const signout = () => ({ type: Types.SIGNOUT_REQUESTED });
 // Storage
 export const uploadFile = (file, placeholder) => ({ type: Types.UPLOAD_FILE_REQUESTED, file, placeholder });
 export const uploadFileDisplayed = (upload) => ({ type: Types.UPLOAD_FILE_DISPLAYED, upload });
+
+// Theme
+export const toggleTheme = () => ({ type: Types.TOGGLE_THEME });

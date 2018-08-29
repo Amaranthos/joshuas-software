@@ -5,7 +5,6 @@ export default (state = 'LIGHT', action) => {
         case Types.TOGGLE_THEME:
             return state === 'LIGHT'? 'DARK' : 'LIGHT';
 
-        default:
-            return state;
+        default: return state;
     }
 }

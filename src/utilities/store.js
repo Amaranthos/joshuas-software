@@ -13,7 +13,7 @@ import { epics } from '../epics';
 export const history = createBrowserHistory();
 const epicMiddleware = createEpicMiddleware(epics);
 
-ReactGA.initialize('UA-124565553-1', { debug: true });
+ReactGA.initialize('UA-124565553-1');
 history.listen((location, action) => {
 	ReactGA.pageview(location.pathname + location.search);
 });

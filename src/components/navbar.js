@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'react-emotion';
 
 import { UnstyledLink } from './unstyled-link';
+import { ConnectedThemeToggle } from './theme-toggle';
 import { mediaBreakpoints } from '../utilities/styling';
 
 const Header = styled('header')(props => ({
@@ -47,6 +48,7 @@ export const Navbar = ({ className }) => (
             <NavLink to="/blog">blog</NavLink>
             <NavLink to="/portfolio">portfolio</NavLink>
             <NavLink to="/resume">resume</NavLink>
+            <ConnectedThemeToggle/>
         </Nav>
     </Header>
 );

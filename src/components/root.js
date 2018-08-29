@@ -10,11 +10,11 @@ import { ConnectedThemer } from './themer';
 const Root = ({ store, history }) => (
 	<Provider store={store}>
 		<PersistGate loading={<div />} persistor={persistStore(store)}>
- 			<ConnectedRouter history={history}>
-				<ConnectedThemer>
+			<ConnectedThemer>
+				<ConnectedRouter history={history}>
 					<App />
-				</ConnectedThemer>
- 			</ConnectedRouter>
+				</ConnectedRouter>
+			</ConnectedThemer>
  		</PersistGate>
  	</Provider>
 );
