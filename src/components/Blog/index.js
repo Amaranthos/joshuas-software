@@ -11,18 +11,18 @@ import RenderPost from './Posts/Render';
 import { fetchPosts, deletePost } from '../../actions';
 import { FaIcon } from '../fa-icon';
 
-const StyledPost = styled('article')({
-	borderBottom: '1px solid black',
+const StyledPost = styled('article')( props => ({
+	borderBottom: `1px solid ${props.theme.primaryFontColor}`,
 	display: 'flex',
 	flexDirection: 'row-reverse',
 	justifyContent: 'space-between'
-});
+}));
 
 const ListItemSpan = styled('span')({
 	margin: '1rem 0'
 });
 
-const InlinePost = ({post, ts}) => (
+const InlinePost = ({ post, ts }) => (
 	<StyledPost>
 		<ListItemSpan>
 			{ts} <Link to={`blog/${post.id}`}><FaIcon icon='link' /></Link>
@@ -44,9 +44,7 @@ class Blog extends Component {
 				<Route exact path="/blog/:postid" component={ShowPost} />
 				<Route exact path="/blog">
 					<React.Fragment>
-						{auth? (
-								<AddPost />
-						) : '' }
+						{auth? (<AddPost />) : '' }
 						<React.Fragment>
 							{_.map(posts, (post) => <InlinePost key={post.id} post={post} ts={post.ts} auth={auth} />)}
 						</React.Fragment>
