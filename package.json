@@ -37,6 +37,9 @@
     "deploy": "react-scripts build && firebase deploy"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.10.0",
+    "eslint-plugin-react": "^7.11.1",
     "redux-devtools-extension": "^2.13.5"
   }
 }
