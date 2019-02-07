@@ -1,46 +1,51 @@
 import firebase from 'firebase';
-import { Observable } from 'rxjs';
+import { map, mergeMap, catchError, from, fromPromise } from 'rxjs/operators';
+import { combineEpics, ofType } from 'redux-observable';
+
 import Types from '../actions/types';
 import { database } from '../utilities/fire.js';
-import { combineEpics } from 'redux-observable';
 
 const fetchPostsFufilled = posts => ({ type: Types.FETCH_POSTS_FULFILLED, posts });
 const fetchPostsRejected = err => ({ type: Types.FETCH_POSTS_REJECTED, err });
 const fetchPostsEpic = action$ =>
-	action$.ofType(Types.FETCH_POSTS_REQUESTED)
-		.mergeMap(
-			() => Observable
-				.create(observer =>
-					database.ref('/blog/posts').on('value', snap => observer.next(snap.val()))
+	action$.pipe(
+		ofType(Types.FETCH_POSTS_REQUESTED),
+		mergeMap(() =>
+			from(observer =>
+				database.ref('/blog/posts').on('value', snap => observer.next(snap.val()))
+			)
+				.pipe(
+					map(snap => fetchPostsFufilled(snap)),
+					catchError(err => fetchPostsRejected(err))
 				)
-				.map(snap => fetchPostsFufilled(snap))
-				.catch(err => fetchPostsRejected(err))
-		);
+		)
+	);
 
 const addPostFulfilled = post => ({ type: Types.ADD_POST_FULFILLED, post });
 const addPostRejected = err => ({ type: Types.ADD_POST_REJECTED, err });
 const addPostEpic = action$ =>
-	action$.ofType(Types.ADD_POST_REQUESTED)
-		.mergeMap(
-			action => Observable
-				.fromPromise(
-					database.ref('/blog/posts').push({ content: action.content, ts: firebase.database.ServerValue.TIMESTAMP })
+	action$.pipe(
+		ofType(Types.ADD_POST_REQUESTED),
+		mergeMap(action =>
+			fromPromise(
+				database.ref('/blog/posts').push({ content: action.content, ts: firebase.database.ServerValue.TIMESTAMP })
+			)
+				.pipe(
+					map(ref => addPostFulfilled(ref.key)),
+					catchError(err => addPostRejected(err))
 				)
-				.map(ref => addPostFulfilled(ref.key))
-				.catch(err => addPostRejected(err))
-		);
+		)
+	);
 
 const fetchPostFufilled = post => ({ type: Types.FETCH_POST_FULFILLED, post });
 const fetchPostEpic = action$ =>
-	action$.ofType(Types.FETCH_POST_REQUESTED)
-		.mergeMap(
-			() => {
-				return Observable.fromPromise(
-					database.ref('/blog/posts').once('value')
-				)
-					.map(ref => fetchPostFufilled(ref.val()));
-			}
-		);
+	action$.pipe (
+		ofType(Types.FETCH_POST_REQUESTED),
+		mergeMap(() =>
+			fromPromise(database.ref('/blog/posts').once('value'))
+				.pipe(map(ref => fetchPostFufilled(ref.val())))
+		)
+	);
 
 export const postsEpic = combineEpics(
 	  fetchPostsEpic
