@@ -25,6 +25,6 @@ const actionTypes = {
 	, SIGNOUT_REJECTED: 'SIGNOUT_REJECTED'
 	, SIGNOUT_FULFILLED: 'SIGNOUT_FULFILLED'
 	, TOGGLE_THEME: 'TOGGLE_THEME'
-}
+};
 
 export default actionTypes;

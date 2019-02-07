@@ -25,11 +25,11 @@ class ShowPost extends Component {
 		return (
 			<div>
 				{post? (
-						<RenderPost post={post} />
-					) : ''
+					<RenderPost post={post} />
+				) : ''
 				}
 			</div>
-		)
+		);
 	}
 }
 

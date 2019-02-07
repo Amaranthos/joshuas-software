@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import { auth } from '../utilities/fire.js';
 import Types from '../actions/types';
 import { combineEpics } from 'redux-observable';
@@ -12,8 +12,8 @@ const signinEpic = action$ =>
 				Observable.fromPromise(
 					auth.signInWithEmailAndPassword(action.email, action.password)
 				)
-				.map(signinFulfilled)
-				.catch(signinRejected)
+					.map(signinFulfilled)
+					.catch(signinRejected)
 		);
 
 const signoutFulfilled = () => ({ type: Types.SIGNOUT_FULFILLED });
@@ -21,12 +21,10 @@ const signoutRejected = err => ({ type: Types.SIGNOUT_REJECTED, err });
 const signoutEpic = action$ =>
 	action$.ofType(Types.SIGNOUT_REQUESTED)
 		.mergeMap(
-			action=>
-				Observable.fromPromise(
-					auth.signOut()
-				)
+			() => Observable
+				.fromPromise(auth.signOut())
 				.map(signoutFulfilled)
 				.catch(signoutRejected)
-		)
+		);
 
 export const authEpic = combineEpics(signinEpic, signoutEpic);

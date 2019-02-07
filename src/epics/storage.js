@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import Types from '../actions/types';
 import { storage } from '../utilities/fire.js';
 import { combineEpics } from 'redux-observable';
@@ -13,10 +13,10 @@ const uploadFileEpic = action$ =>
 				Observable.fromPromise(
 					storage.ref(`/blog/${uuidv4()}`).put(action.file)
 				)
-				.map(snap => uploadFileFulfilled(snap.downloadURL, action.placeholder, action.file.name))
-				.catch(err => uploadFileRejected(err))
+					.map(snap => uploadFileFulfilled(snap.downloadURL, action.placeholder, action.file.name))
+					.catch(err => uploadFileRejected(err))
 		);
 
 export const storageEpic = combineEpics(
-	  uploadFileEpic
+	uploadFileEpic
 );

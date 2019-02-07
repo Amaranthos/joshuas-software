@@ -10,4 +10,4 @@ export const highlight = (str, lang) => {
 	catch(err) { console.error(err); }
 
 	return '';
-}
+};
