@@ -11,7 +11,8 @@ import { reducers } from '../reducers';
 import { epics } from '../epics';
 
 export const history = createBrowserHistory();
-const epicMiddleware = createEpicMiddleware(epics);
+const epicMiddleware = createEpicMiddleware();
+epicMiddleware.run(epics);
 
 ReactGA.initialize('UA-124565553-1');
 history.listen((location, action) => {

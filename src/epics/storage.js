@@ -1,6 +1,7 @@
+import { from } from 'rxjs';
 import uuidv4 from 'uuid/v4';
 import { combineEpics, ofType } from 'redux-observable';
-import { map, mergeMap, catchError, fromPromise } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 
 import Types from '../actions/types';
 import { storage } from '../utilities/fire.js';
@@ -12,7 +13,7 @@ const uploadFileEpic = action$ =>
 		ofType(Types.UPLOAD_FILE_REQUESTED),
 		mergeMap(
 			action =>
-				fromPromise(
+				from(
 					storage.ref(`/blog/${uuidv4()}`).put(action.file)
 				)
 					.pipe(

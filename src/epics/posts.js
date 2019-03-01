@@ -1,5 +1,6 @@
 import firebase from 'firebase';
-import { map, mergeMap, catchError, from, fromPromise } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import { combineEpics, ofType } from 'redux-observable';
 
 import Types from '../actions/types';
@@ -27,7 +28,7 @@ const addPostEpic = action$ =>
 	action$.pipe(
 		ofType(Types.ADD_POST_REQUESTED),
 		mergeMap(action =>
-			fromPromise(
+			from(
 				database.ref('/blog/posts').push({ content: action.content, ts: firebase.database.ServerValue.TIMESTAMP })
 			)
 				.pipe(
@@ -42,7 +43,7 @@ const fetchPostEpic = action$ =>
 	action$.pipe (
 		ofType(Types.FETCH_POST_REQUESTED),
 		mergeMap(() =>
-			fromPromise(database.ref('/blog/posts').once('value'))
+			from(database.ref('/blog/posts').once('value'))
 				.pipe(map(ref => fetchPostFufilled(ref.val())))
 		)
 	);
