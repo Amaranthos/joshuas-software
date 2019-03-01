@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 
 import { UnstyledLink } from './unstyled-link';
 import { ConnectedThemeToggle } from './theme-toggle';

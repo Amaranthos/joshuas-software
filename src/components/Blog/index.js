@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import 'highlight.js/styles/github-gist.css';
