@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { injectGlobal } from 'emotion';
+import { Global } from '@emotion/core';
 import { ThemeProvider } from 'emotion-theming';
 
 import { themes } from '../utilities/styling';
 
-injectGlobal({
+const globalStyles = {
 	'html, body, #root': {
 		width: '100%',
 		height: '100%',
@@ -16,11 +16,13 @@ injectGlobal({
 		fontFamily: 'Roboto, sans-serif',
 		overflowY: 'scroll'
 	}
-});
+};
 
 const Themer = ({ theme, children }) => (
 	<ThemeProvider theme={themes[theme]}>
-		{ children }
+		<Global styles={globalStyles}>
+			{ children }
+		</Global>
 	</ThemeProvider>
 );
 
