@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 import Auth from './auth';
 import Blog from './Blog';
@@ -43,11 +43,11 @@ export const App = () => (
 		<Header />
 		<Main>
 			<Switch>
-				<Route exact path='/' component={Home} />
-				<Route path='/blog' component={Blog} />
-				<Route path='/portfolio' component={Portfolio} />
-				<Route path='/resume' component={Resume} />
-				<Route path='/auth' component={Auth} />
+				<Route exact path='/' component={withRouter(Home)} />
+				<Route path='/blog' component={withRouter(Blog)} />
+				<Route path='/portfolio' component={withRouter(Portfolio)} />
+				<Route path='/resume' component={withRouter(Resume)} />
+				{/* <Route path='/auth' component={Auth} /> */}
 			</Switch>
 		</Main>
 	</StyledDiv>

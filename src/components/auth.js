@@ -43,5 +43,4 @@ function mapDispatchToProps(dispatch) {
 
 export default reduxForm({
 	  form: 'auth'
-	, fields: ['email', 'password']
 })(connect(mapStateToProps, mapDispatchToProps)(Auth));

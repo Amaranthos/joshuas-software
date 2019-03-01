@@ -20,7 +20,7 @@ const LargeFaIcon = styled(FaIcon)({
 	fontSize: '2em'
 });
 
-export const Home = () => (
+export const Home = ({ location }) => (
 	<div className='home'>
 		<Title>I write code</Title>
 		<ul>

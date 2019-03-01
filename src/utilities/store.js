@@ -4,7 +4,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { reducers } from '../reducers';
@@ -12,7 +11,6 @@ import { epics } from '../epics';
 
 export const history = createBrowserHistory();
 const epicMiddleware = createEpicMiddleware();
-epicMiddleware.run(epics);
 
 ReactGA.initialize('UA-124565553-1');
 history.listen((location, action) => {
@@ -24,8 +22,15 @@ const persistConfig = {
 	, storage
 };
 
-export const store = createStore(
-	  connectRouter(history)(persistReducer(persistConfig, reducers))
+const persistedReducers = persistReducer(persistConfig, reducers);
+const middlewares = [epicMiddleware];
+
+const store = createStore(
+	persistedReducers
 	, {}
-	, composeWithDevTools(applyMiddleware(epicMiddleware, routerMiddleware(history)))
+	, composeWithDevTools(applyMiddleware(...middlewares))
 );
+
+epicMiddleware.run(epics);
+
+export { store };

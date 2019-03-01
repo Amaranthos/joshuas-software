@@ -1,22 +1,22 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
-import { ConnectedRouter } from 'connected-react-router';
+import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import { App } from './app';
 import { ConnectedThemer } from './themer';
 
-const Root = ({ store, history }) => (
+export const Root = ({ store, history }) =>(
 	<Provider store={store}>
-		<PersistGate loading={<div />} persistor={persistStore(store)}>
-			<ConnectedThemer>
-				<ConnectedRouter history={history}>
+		<BrowserRouter>
+			<PersistGate loading={<div />} persistor={persistStore(store)}>
+				<ConnectedThemer>
 					<App />
-				</ConnectedRouter>
-			</ConnectedThemer>
- 		</PersistGate>
- 	</Provider>
+				</ConnectedThemer>
+			</PersistGate>
+		</BrowserRouter>
+	</Provider>
 );
 
 export default Root;

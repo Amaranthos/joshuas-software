@@ -20,14 +20,11 @@ const globalStyles = {
 
 const Themer = ({ theme, children }) => (
 	<ThemeProvider theme={themes[theme]}>
-		<Global styles={globalStyles}>
-			{ children }
-		</Global>
+		<Global styles={globalStyles} />
+		{ children }
 	</ThemeProvider>
 );
 
 export const ConnectedThemer = connect(
-	(state) => ({
-		theme: state.theme
-	})
+	({ theme }) => ({ theme	})
 )(Themer);

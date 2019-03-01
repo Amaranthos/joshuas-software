@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { combineEpics, ofType } from 'redux-observable';
 
@@ -12,7 +12,7 @@ const fetchPostsEpic = action$ =>
 	action$.pipe(
 		ofType(Types.FETCH_POSTS_REQUESTED),
 		mergeMap(() =>
-			from(observer =>
+			Observable.create(observer =>
 				database.ref('/blog/posts').on('value', snap => observer.next(snap.val()))
 			)
 				.pipe(
