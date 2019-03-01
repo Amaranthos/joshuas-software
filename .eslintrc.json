@@ -16,16 +16,21 @@
     },
     "parser": "babel-eslint",
     "plugins": [
-        "react"
+        "react",
+        "emotion"
     ],
     "rules": {
+        "emotion/jsx-import": "error",
+        "emotion/no-vanilla": "error",
+        "emotion/import-from-emotion": "error",
+        "emotion/styled-import": "error",
         "indent": [
             "error",
             "tab"
         ],
         "linebreak-style": [
             "error",
-            "windows"
+            "unix"
         ],
         "quotes": [
             "error",
